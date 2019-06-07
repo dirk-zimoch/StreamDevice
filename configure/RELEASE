@@ -49,4 +49,4 @@ PCRE=~/top-7/pcre-7-2
 #ASYN=/afs/psi.ch/user/z/zimoch/top_3.13/4-6
 #COMPAT=/afs/psi.ch/user/z/zimoch/top_3.13
 
--include $(TOP)/../RELEASE.local
+include $(TOP)/../RELEASE.local
