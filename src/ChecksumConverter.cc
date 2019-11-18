@@ -18,27 +18,35 @@
 *                                                              *
 ***************************************************************/
 
-#include "StreamFormatConverter.h"
-#include "StreamError.h"
-#include <ctype.h>
 #if defined(__vxworks) || defined(vxWorks)
 #define PRIX32 "lX"
 #define PRIu32 "lu"
-#define PRIX8  "X"
-#define SCNx8  "hhx"
 #define uint_fast8_t uint8_t
 #define int_fast8_t int8_t
-#elif defined(_MSC_VER) && _MSC_VER < 1700 /* Visual Studio 2010 does not have inttypes.h */
-#include <stdint.h>
-#define PRIX32 "X"
-#define PRIu32 "u"
-#define PRIX8  "X"
-#define SCNx8  "hhx"
 #else
-#define __STDC_FORMAT_MACROS
 #include <stdint.h>
+#if !(defined(_MSC_VER) && _MSC_VER < 1700) /* Visual Studio 2010 does not have inttypes.h */
+#define __STDC_FORMAT_MACROS
 #include <inttypes.h>
 #endif
+#endif
+
+#ifndef PRIX32
+#define PRIX32 "X"
+#endif 
+#ifndef PRIu32
+#define PRIu32 "u"
+#endif
+#ifndef PRIX8
+#define PRIX8  "X"
+#endif
+#ifndef SCNx8
+#define SCNx8  "hhx"
+#endif
+
+#include <ctype.h>
+#include "StreamFormatConverter.h"
+#include "StreamError.h"
 
 #if defined(__vxworks) || defined(vxWorks) || defined(_WIN32) || defined(__rtems__)
 // These systems have no strncasecmp
