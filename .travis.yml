@@ -12,6 +12,9 @@ cache:
 env:
   global:
     - SETUP_PATH=.ci-local:.ci
+    - MODULES="asyn calc"
+    - ASYN_HOOK=.ci-local/fix_RELEASE.sh
+    - CALC_HOOK=.ci-local/fix_RELEASE.sh
 
 addons:
   apt:
@@ -30,4 +33,6 @@ script:
 
 matrix:
   include:
-  - env: BASE=R7.0.3 SET=latest
+  - env: BASE=R3.14.12.8
+  - env: BASE=R3.15.6
+  - env: BASE=R7.0.3
