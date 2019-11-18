@@ -1,4 +1,8 @@
 MODULES="asyn calc"
 
+SUPPORT=..
 ASYN=master
 CALC=master
+
+ASYN_HOOK=.ci-local/fix_RELEASE.sh
+CALC_HOOK=.ci-local/fix_RELEASE.sh

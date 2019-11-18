@@ -1,0 +1,5 @@
+PCRE=
+PCRE_INCLUDE=/usr/include
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
+-include $(TOP)/configure/RELEASE.local
