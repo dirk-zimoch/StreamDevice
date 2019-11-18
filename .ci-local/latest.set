@@ -1,5 +1,4 @@
 MODULES="asyn calc"
 
-BASE=7.0
 ASYN=master
 CALC=master
