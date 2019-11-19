@@ -38,9 +38,6 @@
 #ifndef PRIX8
 #define PRIX8  "X"
 #endif
-#ifndef SCNx8
-#define SCNx8  "hhx"
-#endif
 
 #include <ctype.h>
 #include "StreamFormatConverter.h"
@@ -732,7 +729,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     debug("ChecksumConverter %s: input checksum is 0x%0*" PRIX32 "\n",
         checksumMap[fnum].name, 2*checksumMap[fnum].bytes, sum);
 
-    uint8_t inchar;
+    unsigned int inchar;
 
     if (format.flags & sign_flag) // decimal
     {
@@ -759,7 +756,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
         {
             if (format.flags & zero_flag) // ASCII
             {
-                if (sscanf(input(cursor+2*i), "%2" SCNx8, &inchar) != 1)
+                if (sscanf(input(cursor+2*i), "%2x", &inchar) != 1)
                 {
                     debug("ChecksumConverter %s: Input byte '%s' is not a hex byte\n",
                         checksumMap[fnum].name, input.expand(cursor+2*i,2)());
@@ -789,7 +786,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
             }
             if (inchar != ((sum >> 8*i) & 0xff))
             {
-                debug("ChecksumConverter %s: Input byte 0x%02" PRIX8 " does not match checksum 0x%0*" PRIX32 "\n",
+                debug("ChecksumConverter %s: Input byte 0x%02X does not match checksum 0x%0*" PRIX32 "\n",
                     checksumMap[fnum].name, inchar, 2*checksumMap[fnum].bytes, sum);
                 return -1;
             }
@@ -803,7 +800,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
         {
             if (format.flags & zero_flag) // ASCII
             {
-                sscanf(input(cursor+2*i), "%2" SCNx8, &inchar);
+                sscanf(input(cursor+2*i), "%2x", &inchar);
             }
             else
             if (format.flags & left_flag) // poor man's hex: 0x30 - 0x3F
@@ -828,7 +825,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
             }
             if (inchar != ((sum >> 8*j) & 0xff))
             {
-                debug("ChecksumConverter %s: Input byte 0x%02" PRIX8 " does not match checksum 0x%0*" PRIX32 "\n",
+                debug("ChecksumConverter %s: Input byte 0x%02X does not match checksum 0x%0*" PRIX32 "\n",
                     checksumMap[fnum].name, inchar, 2*checksumMap[fnum].bytes, sum);
                 return -1;
             }
