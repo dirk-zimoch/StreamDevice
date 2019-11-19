@@ -15,6 +15,8 @@ env:
     - MODULES="asyn calc"
     - ASYN_HOOK=.ci-local/fix_RELEASE.sh
     - CALC_HOOK=.ci-local/fix_RELEASE.sh
+    - BASE=R7.0.3
+    - TEST=NO
 
 addons:
   apt:
@@ -39,23 +41,52 @@ matrix:
 
 # Windows
     
-  - env: BASE=R3.14.12.8 WINE=32 TEST=NO STATIC=YES
+  - env: BASE=R3.14.12.8 WINE=32 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R3.14.12.8 WINE=64 TEST=NO STATIC=NO
+  - env: BASE=R3.14.12.8 WINE=32 STATIC=NO
     compiler: mingw
 
-  - env: BASE=R3.14.12.8 TEST=NO STATIC=NO
+  - env: BASE=R3.14.12.8 WINE=64 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R3.14.12.8 WINE=64 STATIC=NO
+    compiler: mingw
+
+  - env: BASE=R3.15.6 WINE=32 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R3.15.6 WINE=32 STATIC=NO
+    compiler: mingw
+
+  - env: BASE=R3.15.6 WINE=64 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R3.15.6 WINE=64 STATIC=NO
+    compiler: mingw
+
+  - env: BASE=R7.0.3 WINE=32 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R7.0.3 WINE=32 STATIC=NO
+    compiler: mingw
+
+  - env: BASE=R7.0.3 WINE=64 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R7.0.3 WINE=64 STATIC=NO
+    compiler: mingw
+
+  - env: TEST=NO STATIC=NO
     os: windows
     compiler: cl
 
 # RTEMS
 
-  - env: BASE=R3.14.12.8 RTEMS=4.10 TEST=NO
+  - env: RTEMS=4.10
 
-  - env: BASE=R3.14.12.8 RTEMS=4.9 TEST=NO
+  - env: RTEMS=4.9
 
 # MacOS
-  - env: BASE=R3.14.12.8
-    os: osx
+  - os: osx
     compiler: clang
