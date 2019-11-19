@@ -39,23 +39,23 @@ matrix:
 
 # Windows
     
-  - env: BASE=7.0 WINE=32 TEST=NO STATIC=YES
+  - env: BASE=R3.14.12.8 WINE=32 TEST=NO STATIC=YES
     compiler: mingw
 
-  - env: BASE=7.0 WINE=64 TEST=NO STATIC=NO
+  - env: BASE=R3.14.12.8 WINE=64 TEST=NO STATIC=NO
     compiler: mingw
 
-  - env: BASE=7.0 TEST=NO STATIC=NO
+  - env: BASE=R3.14.12.8 TEST=NO STATIC=NO
     os: windows
     compiler: cl
 
 # RTEMS
 
-  - env: BASE=7.0 RTEMS=4.10 TEST=NO
+  - env: BASE=R3.14.12.8 RTEMS=4.10 TEST=NO
 
-  - env: BASE=7.0 RTEMS=4.9 TEST=NO
+  - env: BASE=R3.14.12.8 RTEMS=4.9 TEST=NO
 
 # MacOS
-  - env: BASE=7.0
+  - env: BASE=R3.14.12.8
     os: osx
     compiler: clang
