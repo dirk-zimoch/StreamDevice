@@ -45,8 +45,9 @@ matrix:
   - env: BASE=7.0 WINE=64 TEST=NO STATIC=NO
     compiler: mingw
 
-  - env: BASE=7.0
+  - env: BASE=7.0 TEST=NO STATIC=NO
     os: windows
+    compiler: cl
 
 # RTEMS
 
