@@ -21,8 +21,6 @@
 #if defined(__vxworks) || defined(vxWorks)
 #define PRIX32 "lX"
 #define PRIu32 "lu"
-#define uint_fast8_t uint8_t
-#define int_fast8_t int8_t
 #else
 #include <stdint.h>
 #if !(defined(_MSC_VER) && _MSC_VER < 1700) /* Visual Studio 2010 does not have inttypes.h */
@@ -630,7 +628,7 @@ printPseudo(const StreamFormat& format, StreamBuffer& output)
     const char* info = format.info;
     uint32_t init = extract<uint32_t>(info);
     uint32_t xorout = extract<uint32_t>(info);
-    uint_fast8_t fnum = extract<uint8_t>(info);
+    uint8_t fnum = extract<uint8_t>(info);
 
     size_t start = format.width;
     size_t length = output.length()-format.width;
@@ -646,8 +644,8 @@ printPseudo(const StreamFormat& format, StreamBuffer& output)
     debug("ChecksumConverter %s: output checksum is 0x%" PRIX32 "\n",
         checksumMap[fnum].name, sum);
 
-    uint_fast8_t i;
-    uint_fast8_t outchar;
+    uint8_t i;
+    uint8_t outchar;
 
     if (format.flags & sign_flag) // decimal
     {
@@ -706,7 +704,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     uint32_t init = extract<uint32_t>(info);
     uint32_t xorout = extract<uint32_t>(info);
     size_t start = format.width;
-    uint_fast8_t fnum = extract<uint8_t>(info);
+    uint8_t fnum = extract<uint8_t>(info);
     size_t length = cursor-format.width;
 
     if (format.prec > 0) length -= format.prec;
@@ -714,7 +712,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     debug("ChecksumConverter %s: input to check: \"%s\n",
         checksumMap[fnum].name, input.expand(start,length)());
 
-    uint_fast8_t expectedLength =
+    uint8_t expectedLength =
         // get number of decimal digits from number of bytes: ceil(bytes*2.5)
         format.flags & sign_flag ? (checksumMap[fnum].bytes + 1) * 25 / 10 - 2 :
         format.flags & (zero_flag|left_flag) ? 2 * checksumMap[fnum].bytes :
@@ -734,7 +732,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     debug("ChecksumConverter %s: input checksum is 0x%0*" PRIX32 "\n",
         checksumMap[fnum].name, 2*checksumMap[fnum].bytes, sum);
 
-    uint_fast8_t inchar;
+    uint8_t inchar;
 
     if (format.flags & sign_flag) // decimal
     {
@@ -756,7 +754,7 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     else
     if (format.flags & alt_flag) // lsb first (little endian)
     {
-        uint_fast8_t i;
+        uint8_t i;
         for (i = 0; i < checksumMap[fnum].bytes; i++)
         {
             if (format.flags & zero_flag) // ASCII
@@ -799,8 +797,8 @@ scanPseudo(const StreamFormat& format, StreamBuffer& input, size_t& cursor)
     }
     else // msb first (big endian)
     {
-        int_fast8_t i;
-        uint_fast8_t j;
+        int8_t i;
+        uint8_t j;
         for (i = checksumMap[fnum].bytes-1, j = 0; i >= 0; i--, j++)
         {
             if (format.flags & zero_flag) // ASCII
