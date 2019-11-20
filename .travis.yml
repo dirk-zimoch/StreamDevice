@@ -25,6 +25,8 @@ addons:
     - libncurses5-dev
     - perl
     - libpcre3-dev
+  homebrew:
+    packages: re2c
 
 install:
   - .ci/travis/prepare.sh
@@ -44,26 +46,26 @@ matrix:
   - env: BASE=R3.14.12.8 WINE=32 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R3.14.12.8 WINE=32 STATIC=NO
-    compiler: mingw
+#  - env: BASE=R3.14.12.8 WINE=32 STATIC=NO
+#    compiler: mingw
 
   - env: BASE=R3.14.12.8 WINE=64 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R3.14.12.8 WINE=64 STATIC=NO
-    compiler: mingw
+#  - env: BASE=R3.14.12.8 WINE=64 STATIC=NO
+#    compiler: mingw
 
   - env: BASE=R3.15.6 WINE=32 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R3.15.6 WINE=32 STATIC=NO
-    compiler: mingw
+#  - env: BASE=R3.15.6 WINE=32 STATIC=NO
+#    compiler: mingw
 
   - env: BASE=R3.15.6 WINE=64 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R3.15.6 WINE=64 STATIC=NO
-    compiler: mingw
+#  - env: BASE=R3.15.6 WINE=64 STATIC=NO
+#    compiler: mingw
 
   - env: BASE=R7.0.3 WINE=32 STATIC=YES
     compiler: mingw
