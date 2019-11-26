@@ -64,31 +64,32 @@ matrix:
   - env: BASE=R3.15.6 WINE=64 STATIC=YES
     compiler: mingw
 
-#  - env: BASE=R3.15.6 WINE=64 STATIC=NO
-#    compiler: mingw
-
-  - env: BASE=R7.0.3 WINE=32 STATIC=YES
+  - env: BASE=R3.15.6 WINE=64 STATIC=NO
     compiler: mingw
 
-  - env: BASE=R7.0.3 WINE=32 STATIC=NO
+  - env: BASE=7.0 WINE=32 STATIC=YES
     compiler: mingw
 
-  - env: BASE=R7.0.3 WINE=64 STATIC=YES
+  - env: BASE=7.0 WINE=32 STATIC=NO
     compiler: mingw
 
-  - env: BASE=R7.0.3 WINE=64 STATIC=NO
+  - env: BASE=7.0 WINE=64 STATIC=YES
     compiler: mingw
 
-  - env: TEST=NO STATIC=NO
+  - env: BASE=7.0 WINE=64 STATIC=NO
+    compiler: mingw
+
+  - env: BASE=7.0 TEST=NO STATIC=NO
     os: windows
     compiler: cl
 
 # RTEMS
 
-  - env: RTEMS=4.10
+  - env: BASE=7.0 RTEMS=4.10
 
-  - env: RTEMS=4.9
+  - env: BASE=7.0 RTEMS=4.9
 
 # MacOS
-  - os: osx
+  - env: BASE=7.0
+    os: osx
     compiler: clang
