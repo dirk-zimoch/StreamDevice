@@ -24,6 +24,10 @@ addons:
     - libreadline6-dev
     - libncurses5-dev
     - perl
+    - clang
+    - g++-mingw-w64-i686
+    - g++-mingw-w64-x86-64
+    - qemu-system-x86
     - libpcre3-dev
   homebrew:
     packages: re2c
@@ -40,28 +44,31 @@ matrix:
   - env: BASE=R3.14.12.8
   - env: BASE=R3.15.6
   - env: BASE=R7.0.3
+  - env: BASE=R7.0.3
+    compiler: clang
 
 # Windows
     
   - env: BASE=R3.14.12.8 WINE=32 STATIC=YES
     compiler: mingw
 
-#  - env: BASE=R3.14.12.8 WINE=32 STATIC=NO
-#    compiler: mingw
-
   - env: BASE=R3.14.12.8 WINE=64 STATIC=YES
     compiler: mingw
 
+#  Dynamic linking is not supported for mingw in 3.14
+#  - env: BASE=R3.14.12.8 WINE=32 STATIC=NO
+#    compiler: mingw
+#
 #  - env: BASE=R3.14.12.8 WINE=64 STATIC=NO
 #    compiler: mingw
 
   - env: BASE=R3.15.6 WINE=32 STATIC=YES
     compiler: mingw
 
-#  - env: BASE=R3.15.6 WINE=32 STATIC=NO
-#    compiler: mingw
-
   - env: BASE=R3.15.6 WINE=64 STATIC=YES
+    compiler: mingw
+
+  - env: BASE=R3.15.6 WINE=32 STATIC=NO
     compiler: mingw
 
   - env: BASE=R3.15.6 WINE=64 STATIC=NO
@@ -70,23 +77,21 @@ matrix:
   - env: BASE=7.0 WINE=32 STATIC=YES
     compiler: mingw
 
-  - env: BASE=7.0 WINE=32 STATIC=NO
+  - env: BASE=7.0 WINE=64 STATIC=YES
     compiler: mingw
 
-  - env: BASE=7.0 WINE=64 STATIC=YES
+  - env: BASE=7.0 WINE=32 STATIC=NO
     compiler: mingw
 
   - env: BASE=7.0 WINE=64 STATIC=NO
     compiler: mingw
 
-  - env: BASE=7.0 TEST=NO STATIC=NO
-    os: windows
-    compiler: cl
+#  - env: BASE=7.0 TEST=NO STATIC=NO
+#    os: windows
 
 # RTEMS
 
   - env: BASE=7.0 RTEMS=4.10
-
   - env: BASE=7.0 RTEMS=4.9
 
 # MacOS
