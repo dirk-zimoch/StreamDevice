@@ -16,7 +16,7 @@ env:
     - ASYN_HOOK=.ci-local/fix_RELEASE.sh
     - CALC_HOOK=.ci-local/fix_RELEASE.sh
     - BASE=R7.0.3
-    - TEST=NO
+    - TEST=YES
 
 addons:
   apt:
