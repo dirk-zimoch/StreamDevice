@@ -1,4 +1,4 @@
 [submodule ".ci"]
 	path = .ci
-	url = git@github.com:dirk-zimoch/ci-scripts.git
+	url = https://github.com/dirk-zimoch/ci-scripts 
 
