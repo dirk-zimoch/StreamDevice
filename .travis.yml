@@ -15,7 +15,6 @@ env:
     - MODULES="asyn calc"
     - ASYN_HOOK=.ci-local/fix_RELEASE.sh
     - CALC_HOOK=.ci-local/fix_RELEASE.sh
-    - BASE=R7.0.3
     - TEST=YES
 
 addons:
@@ -30,7 +29,8 @@ addons:
     - qemu-system-x86
     - libpcre3-dev
   homebrew:
-    packages: re2c
+    packages:
+    - re2c
 
 install:
   - .ci/travis/prepare.sh
@@ -86,7 +86,10 @@ matrix:
   - env: BASE=7.0 WINE=64 STATIC=NO
     compiler: mingw
 
-#  - env: BASE=7.0 TEST=NO STATIC=NO
+#  - env: BASE=7.0 STATIC=YES
+#    os: windows
+#
+#  - env: BASE=7.0 STATIC=NO
 #    os: windows
 
 # RTEMS
