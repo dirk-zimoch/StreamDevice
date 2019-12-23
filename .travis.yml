@@ -31,6 +31,8 @@ addons:
   homebrew:
     packages:
     - re2c
+    - bash
+    update: true
 
 install:
   - .ci/travis/prepare.sh
